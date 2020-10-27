@@ -1,16 +1,17 @@
 const express = require("express");
-const postsRoutes = require("./routes/postRoutes");
+
+const postsRouter = require("./posts/postsRouter.js");
 
 const server = express();
-const port = 5000;
 server.use(express.json());
 
-server.use("/api/posts", postsRoutes);
+server.use("/api/posts", postsRouter);
 
-server.get("/", (req, res) => {
-  res.json({ message: "Welcome to the server" });
+server.use("/", (req, res) => {
+  res.json({ message: "working" });
 });
 
-server.listen(port, () => {
-  console.log(`API is listining on port${port}`);
+const PORT = 5000;
+server.listen(PORT, () => {
+  console.log(`Server Running on http://localhost:${PORT}`);
 });
